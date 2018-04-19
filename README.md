@@ -1,27 +1,25 @@
-# Offside Or Not
+# Modern Slavery API
+
+[ ![Codeship Status for times/serverless-modern-slavery-api](https://app.codeship.com/projects/9083c3b0-2617-0136-763c-6eae248083f7/status?branch=master)](https://app.codeship.com/projects/286759)
 
 ## Requirements
 
-- Node.js installed globally on your machine
-- Serverless installed globally on your machine
-- Access to an Amazon Web Services account
-
+* Node.js >8 installed globally on your machine
+* `serverless` installed globally on your machine
+* Access to an Amazon Web Services account
 
 ## Usage
 
-This is a [Serverless](https://serverless.com/) app for AWS Lambda. 
-
-Copy `.env.sample.yml` to `.env.yml` and fill in the values.
+This is a [Serverless](https://serverless.com/) app for AWS Lambda.
 
 For Lambda, `handler.js` handles core requests and passes them to the main app in `app/main.js`. You can run this locally as follows:
 
-    $ serverless offline start
-
+    $ yarn start
 
 ## Deployment
 
-The skill is deployed to AWS Lambda via Serverless. Configure Serverless in the `serverless.yml` file, and deploy by running:
+The skill is deployed to AWS Lambda via Serverless:
 
-    $ serverless deploy
+    $ yarn deploy --profile= --deploymentBucket=
 
 _See the Serverless docs for additional deployment commands._

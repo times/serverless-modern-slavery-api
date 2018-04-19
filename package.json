@@ -19,8 +19,10 @@
     "serverless-offline": "^3.15.0"
   },
   "scripts": {
+    "start": "serverless offline",
     "lint": "eslint .",
-    "test": "jest --coverage"
+    "test": "jest --coverage",
+    "deploy": "serverless deploy"
   },
   "author": "Chris Hutchinson <chris.hutchinson@thetimes.co.uk>",
   "license": "MIT"
