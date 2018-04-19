@@ -6,9 +6,12 @@ const S3 = new AWS.S3({
   region: "eu-west-1"
 });
 
-const DYNAMODB_TABLE_NAME = "modernSlaveryPredictions";
-const S3_BUCKET_NAME = "nuk-tnl-editorial-prod-staticassets";
-const S3_BUCKET_PATH = "2018/modern-slavery-results/results.json";
+const DYNAMODB_TABLE_NAME = (module.exports.DYNAMODB_TABLE_NAME =
+  "modernSlaveryPredictions");
+const S3_BUCKET_NAME = (module.exports.S3_BUCKET_NAME =
+  "nuk-tnl-editorial-prod-staticassets");
+const S3_BUCKET_PATH = (module.exports.S3_BUCKET_PATH =
+  "2018/modern-slavery-results/results.json");
 
 /*
  * DynamoDB - store
@@ -47,9 +50,9 @@ module.exports.upload = body =>
         ContentType: "application/json",
         ACL: "public-read"
       },
-      err => {
+      (err, res) => {
         if (err) return reject(err);
-        return resolve();
+        return resolve(res);
       }
     );
   });
