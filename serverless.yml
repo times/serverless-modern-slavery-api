@@ -17,8 +17,7 @@ provider:
     - Effect: "Allow"
       Action:
         - s3:PutObject
-        - s3:GetObject
-      Resource: arn:aws:s3:::nuk-tnl-editorial-prod-staticassets
+      Resource: arn:aws:s3:::nuk-tnl-editorial-prod-staticassets/2018/modern-slavery-results/results.json
 
 custom:
   region: eu-west-1
@@ -36,13 +35,9 @@ functions:
 
   process:
     handler: handler.process
-    timeout: 300
+    timeout: 30
     events:
-      - schedule: cron(0/30 * * * ? *)
-      - http:
-          method: get
-          path: process
-          cors: true
+      - schedule: rate(2 minutes)
 
 plugins:
   - serverless-offline
