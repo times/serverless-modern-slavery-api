@@ -1,0 +1,8 @@
+.npmignore
+.serverless
+node_modules
+
+.DS_Store
+
+dist
+coverage

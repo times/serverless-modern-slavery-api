@@ -1,0 +1,23 @@
+{
+  "name": "offside-or-not-serverless",
+  "version": "1.0.0",
+  "description": "A serverless app that stores users decision from the Offside Or Not interactive",
+  "main": "handler.js",
+  "directories": {
+    "test": "test"
+  },
+  "dependencies": {
+    "aws-sdk": "^2.28.0",
+    "uuid": "^3.1.0"
+  },
+  "devDependencies": {
+    "serverless-offline": "^3.15.0"
+  },
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "offside-or-not-serverless"
+  },
+  "author": "Callum Christie <callum.christie@sunday-times.co.uk>",
+  "license": "ISC"
+}
