@@ -36,13 +36,9 @@ functions:
 
   process:
     handler: handler.process
-    timeout: 300
+    timeout: 30
     events:
-      - schedule: cron(0/30 * * * ? *)
-      - http:
-          method: get
-          path: process
-          cors: true
+      - schedule: rate(2 minutes)
 
 plugins:
   - serverless-offline
