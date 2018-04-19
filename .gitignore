@@ -1,6 +1,7 @@
 .npmignore
 .serverless
 node_modules
+yarn-*.log
 
 .DS_Store
 

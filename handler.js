@@ -1,59 +1,58 @@
-'use strict';
+const { store, process } = require("./app");
+const { upload } = require("./app/helpers");
 
-const { store, retrieve, process } = require('./app');
+const processJson = json => {
+  let result;
+
+  try {
+    result = JSON.parse(json);
+  } catch (e) {
+    result = {};
+  }
+
+  return result;
+};
 
 /*
  * Store data - query string data stored in database
  */
-
 module.exports.store = (event, context, callback) => {
-  store(event.queryStringParameters)
-    .then(respond => {
-      callback(null, {
-        headers: {
-          'Access-Control-Allow-Origin': '*',
-          'Content-Type': 'application/json',
-        },
-        statusCode: 200,
-        body: JSON.stringify(respond),
-      });
-    })
-    .catch(error => {
-      callback(null, {
-        headers: {
-          'Access-Control-Allow-Origin': '*',
-          'Content-Type': 'application/json',
-        },
-        statusCode: 500,
-        body: JSON.stringify(error),
-      });
+  const { body: bodyJSON } = event;
+  const { value } = processJson(bodyJSON);
+
+  if (!value) {
+    callback(null, {
+      headers: {
+        "Access-Control-Allow-Origin": "*",
+        "Content-Type": "application/json"
+      },
+      statusCode: 400,
+      body: JSON.stringify({
+        error: "Invalid POST body passed."
+      })
     });
-};
+    return;
+  }
 
-/*
- * Retrieve data - return JSON representation of data
- */
-
-module.exports.retrieve = (event, context, callback) => {
-  retrieve()
-    .then(respond => {
+  store(value)
+    .then(() => {
       callback(null, {
         headers: {
-          'Access-Control-Allow-Origin': '*',
-          'Content-Type': 'application/json',
+          "Access-Control-Allow-Origin": "*",
+          "Content-Type": "application/json"
         },
         statusCode: 200,
-        body: JSON.stringify(respond),
+        body: null
       });
     })
     .catch(error => {
       callback(null, {
         headers: {
-          'Access-Control-Allow-Origin': '*',
-          'Content-Type': 'application/json',
+          "Access-Control-Allow-Origin": "*",
+          "Content-Type": "application/json"
         },
         statusCode: 500,
-        body: JSON.stringify(error),
+        body: JSON.stringify(error)
       });
     });
 };
@@ -61,28 +60,9 @@ module.exports.retrieve = (event, context, callback) => {
 /*
  * Process data - calculate totals and store JSON on S3
  */
-
 module.exports.process = (event, context, callback) => {
   process()
-    .then(respond => {
-      callback(null, {
-        headers: {
-          'Access-Control-Allow-Origin': '*',
-          'Content-Type': 'application/json',
-        },
-        statusCode: 200,
-        body: JSON.stringify(respond),
-      });
-    })
-    .catch(error => {
-      callback(null, {
-        headers: {
-          'Access-Control-Allow-Origin': '*',
-          'Content-Type': 'application/json',
-        },
-        statusCode: 500,
-        body: JSON.stringify(error),
-      });
-    });
+    .then(upload)
+    .then(() => callback())
+    .catch(error => callback(error));
 };
-
