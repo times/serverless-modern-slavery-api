@@ -2,6 +2,24 @@
 
 [ ![Codeship Status for times/serverless-modern-slavery-api](https://app.codeship.com/projects/9083c3b0-2617-0136-763c-6eae248083f7/status?branch=master)](https://app.codeship.com/projects/286759)
 
+## Endpoints
+
+### URLs
+
+* **Production: ** https://2uw8l9c0kl.execute-api.eu-west-1.amazonaws.com/dev/
+* **Local: ** http://localhost:3000/
+
+### `[POST] {url}/store` - store a prediction value
+
+**Body**
+
+```
+application/json
+{
+	"value": 34020
+}
+```
+
 ## Requirements
 
 * Node.js >8 installed globally on your machine
