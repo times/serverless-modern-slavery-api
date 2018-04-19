@@ -1,23 +1,29 @@
 {
-  "name": "offside-or-not-serverless",
+  "name": "serverless-modern-slavery-api",
   "version": "1.0.0",
-  "description": "A serverless app that stores users decision from the Offside Or Not interactive",
+  "description":
+    "A serverless app that stores users predictions from the Modern Slavery interactive",
   "main": "handler.js",
-  "directories": {
-    "test": "test"
-  },
   "dependencies": {
     "aws-sdk": "^2.28.0",
     "uuid": "^3.1.0"
   },
   "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-eslint": "^8.2.3",
+    "babel-jest": "^22.4.3",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "eslint": "^4.19.1",
+    "jest": "^22.4.3",
+    "regenerator-runtime": "^0.11.1",
     "serverless-offline": "^3.15.0"
   },
-  "scripts": {},
-  "repository": {
-    "type": "git",
-    "url": "offside-or-not-serverless"
+  "scripts": {
+    "start": "serverless offline",
+    "lint": "eslint .",
+    "test": "jest --coverage",
+    "deploy": "serverless deploy"
   },
-  "author": "Callum Christie <callum.christie@sunday-times.co.uk>",
-  "license": "ISC"
+  "author": "Chris Hutchinson <chris.hutchinson@thetimes.co.uk>",
+  "license": "MIT"
 }
