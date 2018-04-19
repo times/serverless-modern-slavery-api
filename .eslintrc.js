@@ -5,7 +5,8 @@ module.exports = {
   },
   env: {
     es6: true,
-    node: true
+    node: true,
+    jest: true
   },
   extends: "eslint:recommended",
   rules: {
@@ -17,5 +18,6 @@ module.exports = {
     "no-useless-constructor": 1,
     "no-debugger": 1
   },
+  parser: "babel-eslint",
   plugins: []
 };
