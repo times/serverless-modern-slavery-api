@@ -4,11 +4,6 @@
 
 ## Endpoints
 
-### URLs
-
-* **Production: ** https://2uw8l9c0kl.execute-api.eu-west-1.amazonaws.com/dev/
-* **Local: ** http://localhost:3000/
-
 ### `[POST] {url}/store` - store a prediction value
 
 **Body**
